@@ -1,3 +1,4 @@
+import decimal
 class Account:
     def __init__(self, username, password, acctype, bal) -> None:
         self.username = username
@@ -28,4 +29,4 @@ class Account:
             f.write('Username: ' + self.username + '\nPassword: ' + self.password + '\nAccount type: ' + self.account_type + '\nBalance: ' + str(self.balance) + '\nInterest rate: ' + str(self.interest))
         print("Done!")
     def __str__(self) -> str:
-        return f"You have a {self.account_type} account. Your interest rate is therefore {self.interest*100}% and your balance is {self.balance}"
+        return f"You have a {self.account_type} account. Your interest rate is therefore {decimal.Decimal(round(self.interest,2))*decimal.Decimal(round(100,2))}% and your balance is {self.balance}"
