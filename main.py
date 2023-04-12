@@ -1,5 +1,6 @@
 from account import *
 import math
+import json
 
 
 def main():
@@ -12,6 +13,19 @@ def main():
             #Use a dictionary to match key to value (username to password) for verification.
             login_username = input("Enter your username: ")
             login_password = input("Enter password: ")
+            with open('accountInfo.json') as f:
+                data = json.load(f)
+
+            username = data['Username:']
+            password = data['Password:']
+            account_type = data['Account type:']
+            balance = data['Balance:']
+            if login_username == username and login_password == password:
+                print("Success")
+                username = Account(username,password,account_type,balance)
+                print (username)
+            else:
+                print("Error")
             break
         elif(user_login_choice == 2):
             #Add account creation here
@@ -26,7 +40,7 @@ def main():
                     print("Error! passwords did not match, try again!")
                     continue
             while True:
-                print("The account types you can open are: 1. Savings, 2. Checking, 3. Child, 4. Brokerage")
+                print("The account types you can open are: 1. Savings, 2. Checking, 3. Child, 4. Brokerage ")
                 user_choice = int(input("Enter the type of account you want to open (1 for savings, 2 for checking etc.)."))
                 user_account_type = ""
                 if(user_choice == 1):
