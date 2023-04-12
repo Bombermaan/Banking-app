@@ -68,7 +68,7 @@ def main():
             nickname.saveAccountState()
             break
         else:
-            error = f"Invalid value! Please press only 1 or 2. your input was {userLoginChoice}"
+            error = f"Invalid value! Please press only 1 or 2. your input was {user_login_choice}"
             print(error)
             continue
 
