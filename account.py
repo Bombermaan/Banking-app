@@ -1,20 +1,11 @@
 import decimal
 import json
 class Account:
-    def __init__(self, username, password, acctype, bal) -> None:
+    def __init__(self, username, password, bal) -> None:
         self.username = username
         self.password = password
-        self.account_type = acctype
         self.balance = bal
         self.interest = 0
-        if(self.account_type == "savings"):
-            self.interest = 0.04
-        elif(self.account_type == "checking"):
-            self.interest = 0.02
-        elif(self.account_type == "child"):
-            self.interest = 0.03
-        elif(self.account_type == "brokerage"):
-            self.interest = 0.0045
     def addBalance(self,amount):
         self.balance += amount
         return f"Balance added to account. Amount added: {amount}, current balance: {self.balance}"
@@ -39,3 +30,13 @@ class Account:
         print("Done!")
     def __str__(self) -> str:
         return f"You have a {self.account_type} account. Your interest rate is therefore {decimal.Decimal(round(self.interest,2))*decimal.Decimal(round(100,2))}% and your balance is {self.balance}"
+class childAccount(Account):
+    def __init__(self, username, password, bal) -> None:
+        super().__init__(username, password, bal)
+        self.account_type = "Child"
+        self.interest = 0.03
+class savingsAccount(Account):
+    def __init__(self, username, password, bal) -> None:
+        super().__init__(username, password, bal)
+        self.account_type = "Savings"
+        self.interest = 0.04
