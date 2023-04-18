@@ -42,7 +42,7 @@ def main():
                     continue
             while True:
                 print("The account types you can open are: 1. Savings, 2. Checking, 3. Child, 4. Brokerage ")
-                user_choice = int(input("Enter the type of account you want to open (1 for savings, 2 for checking etc.)."))
+                user_choice = int(input("Enter the type of account you want to open (1 for savings, 2 for checking etc.). "))
                 user_account_type = ""
                 if(user_choice == 1):
                     user_account_type = "savings"
@@ -91,22 +91,32 @@ def main():
             error = f"Invalid value! Please press only 1 or 2. your input was {user_login_choice}"
             print(error)
             continue
-    print("Do you want to deposit or withdraw money?")
+    
     while True:
+        print("Do you want to deposit or withdraw money?")
         account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money: "))
         if(account_using_choice == 1):
             deposit_amount = int(input("Enter deposit amount: "))
             account.addBalance(deposit_amount)
             print(account.balance)
             account.saveAccountState()
+            break
         elif(account_using_choice == 2):
             withdraw_amount = int(input("Enter withdraw amount: "))
+            if withdraw_amount > account.balance:
+                print("Error! Account balance is crossed.")
+                account.saveAccountState()
+                continue
             account.withdrawBalance(withdraw_amount)
-            print(account.balance)
+            print (f"Current account balance is: {account.balance}")
             account.saveAccountState()
+            break
         else: 
             print("Error! Choose 1 or 2")
         continue
+    
+    #Add error message when trying to withdraw more money then the balance in the account.
+    #Show current balance on account.
     
 
 main()
