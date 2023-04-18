@@ -22,8 +22,8 @@ def main():
             balance = data['Balance:']
             if login_username == username and login_password == password:
                 print("Success")
-                username = Account(username,password,account_type,balance)
-                print (username)
+                users_account = Account(username,password,account_type,balance)
+                print (users_account)
             else:
                 print("Error")
             break
@@ -70,16 +70,16 @@ def main():
             except ValueError:
                 print("Input empty, assuming default value of 100.")
                 balance = default_balance
-            print("Finally, create a nickname for your account:")
+            print("Do you want to create the account with the following information?")
+            print ("Username:" + user_name + "\nPassword:" + password + "\nBalance:" + str(balance))
             while True:
-                nickname = input("Input nickname: ")
-                if(nickname != ""):
-                    break
-                else:
-                    print("Error! Check nickname!")
-            nickname = Account(user_name, password, user_account_type, balance)
-            print(nickname)
-            nickname.saveAccountState()
+                create_choice = int(input("Press 1 to create, press 2 to abort creation "))
+                if create_choice == 1:
+                    class_caller_name = (str(user_account_type)+"Account")
+                    myclass = globals()[class_caller_name]
+                    account = myclass(user_name,password,balance)
+                    print(account)
+                    account.saveAccountState()
             break
         else:
             error = f"Invalid value! Please press only 1 or 2. your input was {user_login_choice}"
