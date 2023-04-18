@@ -1,6 +1,7 @@
 from account import *
 import math
 import json
+import time
 
 
 def main():
@@ -80,12 +81,32 @@ def main():
                     account = myclass(user_name,password,balance)
                     print(account)
                     account.saveAccountState()
+                    break
+                else:
+                    print("Aborting account creation, returning to main menu:")
+                    time.sleep(2)
+                    main()
             break
         else:
             error = f"Invalid value! Please press only 1 or 2. your input was {user_login_choice}"
             print(error)
             continue
-
+    print("Do you want to deposit or withdraw money?")
+    while True:
+        account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money: "))
+        if(account_using_choice == 1):
+            deposit_amount = int(input("Enter deposit amount: "))
+            account.addBalance(deposit_amount)
+            print(account.balance)
+            account.saveAccountState()
+        elif(account_using_choice == 2):
+            withdraw_amount = int(input("Enter withdraw amount: "))
+            account.withdrawBalance(withdraw_amount)
+            print(account.balance)
+            account.saveAccountState()
+        else: 
+            print("Error! Choose 1 or 2")
+        continue
     
 
 main()
