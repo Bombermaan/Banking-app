@@ -5,7 +5,6 @@ class Account:
         self.username = username
         self.password = password
         self.balance = bal
-        self.interest = 0
     def addBalance(self,amount):
         self.balance += amount
         return f"Balance added to account. Amount added: {amount}, current balance: {self.balance}"
@@ -40,3 +39,13 @@ class savingsAccount(Account):
         super().__init__(username, password, bal)
         self.account_type = "Savings"
         self.interest = 0.04
+class checkingAccount(Account):
+    def __init__(self, username, password, bal) -> None:
+        super().__init__(username, password, bal)
+        self.account_type = "Checking"
+        self.interest = 0.02
+class brokerageAccount(Account):
+    def __init__(self, username, password, bal) -> None:
+        super().__init__(username, password, bal)
+        self.account_type = "Brokerage"
+        self.interest = 0.05
