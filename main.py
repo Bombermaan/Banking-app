@@ -3,6 +3,19 @@ import math
 import json
 import time
 
+current_month = 0 
+def checkInterest():
+        while True: 
+            month = 0
+           
+            if current_month > month:
+                print(Account.addInterest())
+                month += 1
+
+def debugAddInterest():
+    current_month = 0
+    current_month += 1
+    checkInterest()
 
 def main():
     
@@ -93,8 +106,8 @@ def main():
             continue
     
     while True:
-        print("Do you want to deposit or withdraw money?")
-        account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money: "))
+        print("Do you want to deposit or withdraw money or add interest(debug)?")
+        account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money, press 3 to add interest: "))
         if(account_using_choice == 1):
             deposit_amount = int(input("Enter deposit amount: "))
             account.addBalance(deposit_amount)
@@ -111,12 +124,15 @@ def main():
             print (f"Current account balance is: {account.balance}")
             account.saveAccountState()
             break
+        elif(account_using_choice == 3):
+             debugAddInterest()
         else: 
             print("Error! Choose 1 or 2")
         continue
-    
-    #Add error message when trying to withdraw more money then the balance in the account.
-    #Show current balance on account.
-    
 
+    #Näytä korko kuukausittain joka balanceen on lisääntyy.
+    
 main()
+
+
+    
