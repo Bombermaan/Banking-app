@@ -32,20 +32,20 @@ class Account:
 class childAccount(Account):
     def __init__(self, username, password, bal) -> None:
         super().__init__(username, password, bal)
-        self.account_type = "Child"
+        self.account_type = "child"
         self.interest = 0.03
 class savingsAccount(Account):
     def __init__(self, username, password, bal) -> None:
         super().__init__(username, password, bal)
-        self.account_type = "Savings"
+        self.account_type = "savings"
         self.interest = 0.04
 class checkingAccount(Account):
     def __init__(self, username, password, bal) -> None:
         super().__init__(username, password, bal)
-        self.account_type = "Checking"
+        self.account_type = "checking"
         self.interest = 0.02
 class brokerageAccount(Account):
     def __init__(self, username, password, bal) -> None:
         super().__init__(username, password, bal)
-        self.account_type = "Brokerage"
+        self.account_type = "brokerage"
         self.interest = 0.05
