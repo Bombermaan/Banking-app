@@ -5,7 +5,24 @@ import time
 from datetime import datetime
 
 
+<<<<<<< Updated upstream
 
+=======
+def checkInterest():
+        while True: 
+            month = 0
+           
+            if current_month > month:
+                print(Account.addInterest())
+                month += 1
+
+def debugAddInterest():
+    
+    current_month += 1
+    checkInterest()
+>>>>>>> Stashed changes
+
+current_month = 0
 
 def main():
 
@@ -26,11 +43,13 @@ def main():
         return f"Interest added! Your new balance is {account.balance}!"
     
     print("Hello and welcome to the Very Cool Banking App™. Do you want to log in to an existing account or create a new one?")
+
+    #If users chose 1, login into a account;opens a json file with the account information.
+    #Checks if the username or/and password are correct, if incorrect gives an Error for the user.
+
     while True:
         user_login_choice = (int(input("Press 1 to login(in development), press 2 to create account: ")))
         if(user_login_choice == 1):
-            #Add account migration from file here
-            #Use a dictionary to match key to value (username to password) for verification.
             login_username = input("Enter your username: ")
             login_password = input("Enter password: ")
             with open('accountInfo.json') as f:
@@ -48,11 +67,18 @@ def main():
                 print(account)
                 account.saveAccountState()
             else:
+<<<<<<< Updated upstream
                 print("Error")
                 continue
+=======
+                print("Error, username or password is incorrect.")
+>>>>>>> Stashed changes
             break
+        
+        #If user chose 2, create account; create a username and password, confirm password.
+        #If passwords do not match, Error and try again.
+
         elif(user_login_choice == 2):
-            #Add account creation here
             print("Create your account here!")
             while True:
                 user_name = input("Enter your username: ")
@@ -63,6 +89,11 @@ def main():
                 else:
                     print("Error! passwords did not match, try again!")
                     continue
+                    
+            #Choose account type, gives 4 choices to choose from.
+            #Creates account depending on user choice; Error if not input value is not 1 to 4.
+            #If Error user is made to choose again; if chosen correctly informs the user what account they created.
+
             while True:
                 print("The account types you can open are: 1. Savings, 2. Checking, 3. Child, 4. Brokerage ")
                 user_choice = int(input("Enter the type of account you want to open (1 for savings, 2 for checking etc.). "))
@@ -83,6 +114,10 @@ def main():
                     error = f"Error! Check input value! Please type a number from 1 to 4. Your value was {user_choice}."
                     continue
             print(f"You have chosen a {user_account_type} account.")
+
+            #Asking the amount user is wanting to deposit to the account when created. 
+            #Deposit needs to be 100 or higher, if not Error and asks user to adjust amount.
+
             default_balance = 100
             print("How much money will you put into this account? The minimum is 100.")
             print("If you leave the space empty, it will assume the 100 and put that into the account.")
@@ -94,6 +129,12 @@ def main():
             except ValueError:
                 print("Input empty, assuming default value of 100.")
                 balance = default_balance
+
+            #Asking the user if they want the account to be created or aborted.
+            #If user chose 1, create account.
+            #if user chose 2, abort creating the account.
+            #If input is invalid, Error and choice is given again.
+
             print("Do you want to create the account with the following information?")
             print ("Username:" + user_name + "\nPassword:" + password + "\nBalance:" + str(balance))
             while True:
@@ -114,8 +155,9 @@ def main():
             error = f"Invalid value! Please press only 1 or 2. your input was {user_login_choice}"
             print(error)
             continue
-    
+    #Asking user if they
     while True:
+<<<<<<< Updated upstream
         print("Do you want to deposit or withdraw money or add interest(debug)?")
         try: 
             account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money, press 3 to add interest: "))
@@ -145,8 +187,37 @@ def main():
         except ValueError:
             print("Input empty!")
             continue
+=======
+        print("Do you want to deposit or withdraw money or add interest(debug) or check account information?")
+        account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money, press 3 to add interest, press 4 to check account information: "))
+        if(account_using_choice == 1):
+            deposit_amount = int(input("Enter deposit amount: "))
+            account.addBalance(deposit_amount)
+            print(account.balance)
+            account.saveAccountState()
+            break
+        elif(account_using_choice == 2):
+            withdraw_amount = int(input("Enter withdraw amount: "))
+            if withdraw_amount > account.balance:
+                print("Error! Account balance is crossed.")
+                account.saveAccountState()
+                continue
+            account.withdrawBalance(withdraw_amount)
+            print (f"Current account balance is: {account.balance}")
+            account.saveAccountState()
+            break
+        elif(account_using_choice == 3):
+            debugAddInterest()
+            account.saveAccountStatement()
+        elif(account_using_choice == 4):
+            print (f"Your account balance is {account.balance} and your interest rate is {account.interest}")
+            account.saveAccountState()
+            break
+        else: 
+            print("Error! Choose 1 or 2")
+        continue
+>>>>>>> Stashed changes
 
-    #Näytä korko kuukausittain joka balanceen on lisääntyy.
     
 main()
 
