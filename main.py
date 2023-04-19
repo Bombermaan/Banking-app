@@ -2,22 +2,28 @@ from account import *
 import math
 import json
 import time
+from datetime import datetime
 
-current_month = 0 
-def checkInterest():
-        while True: 
-            month = 0
-           
-            if current_month > month:
-                print(Account.addInterest())
-                month += 1
 
-def debugAddInterest():
-    current_month = 0
-    current_month += 1
-    checkInterest()
+
 
 def main():
+
+    def checkInterest(current_month,month):
+        
+        while True:
+            if current_month > month:
+                print(account.addInterest())
+                month += 1
+                break
+            else:
+                continue    
+            
+    def debugAddInterest():
+        month = datetime.now().month
+        current_month = month + 1
+        checkInterest(current_month, month)
+        return f"Interest added! Your new balance is {account.balance}!"
     
     print("Hello and welcome to the Very Cool Banking App™. Do you want to log in to an existing account or create a new one?")
     while True:
@@ -36,10 +42,14 @@ def main():
             balance = data['Balance:']
             if login_username == username and login_password == password:
                 print("Success")
-                users_account = Account(username,password,account_type,balance)
-                print (users_account)
+                class_caller_name = (str(account_type)+"Account")
+                myclass = globals()[class_caller_name]
+                account = myclass(username,password,balance)
+                print(account)
+                account.saveAccountState()
             else:
                 print("Error")
+                continue
             break
         elif(user_login_choice == 2):
             #Add account creation here
@@ -107,28 +117,34 @@ def main():
     
     while True:
         print("Do you want to deposit or withdraw money or add interest(debug)?")
-        account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money, press 3 to add interest: "))
-        if(account_using_choice == 1):
-            deposit_amount = int(input("Enter deposit amount: "))
-            account.addBalance(deposit_amount)
-            print(account.balance)
-            account.saveAccountState()
-            break
-        elif(account_using_choice == 2):
-            withdraw_amount = int(input("Enter withdraw amount: "))
-            if withdraw_amount > account.balance:
-                print("Error! Account balance is crossed.")
+        try: 
+            account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money, press 3 to add interest: "))
+        
+            if(account_using_choice == 1):
+                deposit_amount = int(input("Enter deposit amount: "))
+                account.addBalance(deposit_amount)
+                print(account.balance)
                 account.saveAccountState()
-                continue
-            account.withdrawBalance(withdraw_amount)
-            print (f"Current account balance is: {account.balance}")
-            account.saveAccountState()
-            break
-        elif(account_using_choice == 3):
-             debugAddInterest()
-        else: 
-            print("Error! Choose 1 or 2")
-        continue
+                break
+            elif(account_using_choice == 2):
+                withdraw_amount = int(input("Enter withdraw amount: "))
+                if withdraw_amount > account.balance:
+                    print("Error! Account balance is crossed.")
+                    account.saveAccountState()
+                    continue
+                account.withdrawBalance(withdraw_amount)
+                print (f"Current account balance is: {account.balance}")
+                account.saveAccountState()
+                break
+            elif(account_using_choice == 3):
+                 debugAddInterest()
+                 account.saveAccountState()
+            else: 
+                print("Error! Choose 1 or 2")
+            continue
+        except ValueError:
+            print("Input empty!")
+            continue
 
     #Näytä korko kuukausittain joka balanceen on lisääntyy.
     
