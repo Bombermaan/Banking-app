@@ -14,6 +14,8 @@ class Account:
     def addInterest(self):
         self.balance += self.balance*self.interest
         return f"Interest added! New account balance is: {self.balance}"
+    def accountStatement(self):
+        return f"Your account balance is {self.balance} and your interest rate is {self.interest}"
     def saveAccountState(self):
         dictionary = {
             "Username:": self.username,
