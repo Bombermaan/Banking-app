@@ -151,7 +151,7 @@ def main():
 
             #Withdraw amount cannot cross the account balance. 
             #If account balance is crossed, user is given the choice to choose action again.
-            
+
             elif(account_using_choice == 2):
                 withdraw_amount = int(input("Enter withdraw amount: "))
                 if withdraw_amount > account.balance:
@@ -170,7 +170,7 @@ def main():
                 account.saveAccountState()
                 break
             else: 
-                print("Error! Choose 1 or 2")
+                print("Error! Choose a number between 1 to 4.")
             continue
         except ValueError:
             print("Input empty!")
