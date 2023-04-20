@@ -5,24 +5,6 @@ import time
 from datetime import datetime
 
 
-<<<<<<< Updated upstream
-
-=======
-def checkInterest():
-        while True: 
-            month = 0
-           
-            if current_month > month:
-                print(Account.addInterest())
-                month += 1
-
-def debugAddInterest():
-    
-    current_month += 1
-    checkInterest()
->>>>>>> Stashed changes
-
-current_month = 0
 
 def main():
 
@@ -67,12 +49,9 @@ def main():
                 print(account)
                 account.saveAccountState()
             else:
-<<<<<<< Updated upstream
                 print("Error")
                 continue
-=======
                 print("Error, username or password is incorrect.")
->>>>>>> Stashed changes
             break
         
         #If user chose 2, create account; create a username and password, confirm password.
@@ -157,11 +136,9 @@ def main():
             continue
     #Asking user if they
     while True:
-<<<<<<< Updated upstream
-        print("Do you want to deposit or withdraw money or add interest(debug)?")
-        try: 
-            account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money, press 3 to add interest: "))
-        
+        print("Do you want to deposit or withdraw money or add interest(debug) or check account information?")
+        try:
+            account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money, press 3 to add interest, press 4 to check account information: "))
             if(account_using_choice == 1):
                 deposit_amount = int(input("Enter deposit amount: "))
                 account.addBalance(deposit_amount)
@@ -179,44 +156,18 @@ def main():
                 account.saveAccountState()
                 break
             elif(account_using_choice == 3):
-                 debugAddInterest()
-                 account.saveAccountState()
+                debugAddInterest()
+                account.saveAccountStatement()
+            elif(account_using_choice == 4):
+                print (f"Your account balance is {account.balance} and your interest rate is {account.interest}")
+                account.saveAccountState()
+                break
             else: 
                 print("Error! Choose 1 or 2")
             continue
         except ValueError:
             print("Input empty!")
             continue
-=======
-        print("Do you want to deposit or withdraw money or add interest(debug) or check account information?")
-        account_using_choice = int(input("Press 1 to deposit money, press 2 to withdraw money, press 3 to add interest, press 4 to check account information: "))
-        if(account_using_choice == 1):
-            deposit_amount = int(input("Enter deposit amount: "))
-            account.addBalance(deposit_amount)
-            print(account.balance)
-            account.saveAccountState()
-            break
-        elif(account_using_choice == 2):
-            withdraw_amount = int(input("Enter withdraw amount: "))
-            if withdraw_amount > account.balance:
-                print("Error! Account balance is crossed.")
-                account.saveAccountState()
-                continue
-            account.withdrawBalance(withdraw_amount)
-            print (f"Current account balance is: {account.balance}")
-            account.saveAccountState()
-            break
-        elif(account_using_choice == 3):
-            debugAddInterest()
-            account.saveAccountStatement()
-        elif(account_using_choice == 4):
-            print (f"Your account balance is {account.balance} and your interest rate is {account.interest}")
-            account.saveAccountState()
-            break
-        else: 
-            print("Error! Choose 1 or 2")
-        continue
->>>>>>> Stashed changes
 
     
 main()
