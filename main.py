@@ -134,7 +134,10 @@ def main():
             error = f"Invalid value! Please press only 1 or 2. your input was {user_login_choice}"
             print(error)
             continue
-    #Asking user if they
+
+    #Giving user options for their next action.
+    #1 = deposit, 2 = withdraw, 3 = add interest and 4 = check account info.
+
     while True:
         print("Do you want to deposit or withdraw money or add interest(debug) or check account information?")
         try:
@@ -145,6 +148,10 @@ def main():
                 print(account.balance)
                 account.saveAccountState()
                 break
+
+            #Withdraw amount cannot cross the account balance. 
+            #If account balance is crossed, user is given the choice to choose action again.
+            
             elif(account_using_choice == 2):
                 withdraw_amount = int(input("Enter withdraw amount: "))
                 if withdraw_amount > account.balance:
