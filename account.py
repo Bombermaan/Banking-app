@@ -1,5 +1,7 @@
 import decimal
 import json
+import time
+
 class Account:
     def __init__(self, username, password, bal) -> None:
         self.username = username
@@ -7,15 +9,15 @@ class Account:
         self.balance = bal
     def addBalance(self,amount):
         self.balance += amount
-        return f"Balance added to account. Amount added: {amount}, current balance: {self.balance}"
+        return f"Balance added to account. Amount added: {amount}, current balance: {self.balance}\n\n"
     def withdrawBalance(self,amount):
         self.balance -= amount
-        return f"Withdrew {amount} from account. Your new balance is: {self.balance}"
+        return f"Withdrew {amount} from account. Your new balance is: {self.balance}\n\n"
     def addInterest(self):
         self.balance += self.balance*self.interest
-        return f"Interest added! New account balance is: {self.balance}"
+        return f"Interest added! New account balance is: {self.balance}\n\n"
     def accountStatement(self):
-        return f"Your account balance is {self.balance} and your interest rate is {self.interest}"
+        return f"Your account balance is {self.balance} and your interest rate is {self.interest}\n\n"
     def saveAccountState(self):
         dictionary = {
             "Username:": self.username,
@@ -25,12 +27,13 @@ class Account:
             "Interest rate:": self.interest
         }
         json_object = json.dumps(dictionary, indent=4)
-        print("Saving account information...") 
+        print("Saving account information...")
+        time.sleep(1) 
         with open('accountInfo.json', "w") as f:
             f.write(json_object)
         print("Done!")
     def __str__(self) -> str:
-        return f"You have a {self.account_type} account. Your interest rate is therefore {decimal.Decimal(round(self.interest,2))*decimal.Decimal(round(100,2))}% and your balance is {self.balance}"
+        return f"You have a {self.account_type} account. Your interest rate is therefore {decimal.Decimal(round(self.interest,2))*decimal.Decimal(round(100,2))}% and your balance is {self.balance}\n\n"
 class childAccount(Account):
     def __init__(self, username, password, bal) -> None:
         super().__init__(username, password, bal)
