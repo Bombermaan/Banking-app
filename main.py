@@ -37,7 +37,7 @@ def main():
                     if(account_using_choice == 1):
                         deposit_amount = int(input("Enter deposit amount: "))
                         account.addBalance(deposit_amount)
-                        print(account.balance)
+                        print(f"Done! Your new balance is: {account.balance}")
                         time.sleep(0.5)
                         account.saveAccountState()
                         break
