@@ -1,3 +1,7 @@
+#filename: account.py
+#Authors: Mattila Teemu, Hahko Riina, Lehtovaara Maija
+#Description: A simple banking app that has account creation and account management
+
 from account import *
 import math
 import json
