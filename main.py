@@ -133,7 +133,7 @@ def main():
                 if(password == password_confirm):
                     break
                 else:
-                    print("Error! passwords did not match, try again!")
+                    print("Error! Passwords did not match, try again!")
                     continue
                     
             #Choose account type, gives 4 choices to choose from.
