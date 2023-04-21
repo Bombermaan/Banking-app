@@ -8,6 +8,8 @@ account = ""
 
 def main():
 
+    #This code checks if the current month has passed and a new one began, and if so, adds interest to account
+
     def checkInterest(current_month,month):
         
         while True:
@@ -18,6 +20,9 @@ def main():
                 break
             else:
                 continue    
+      
+    #A debug function to display how the interest works. 
+    #This code forcibly advances one month and calls the checkInterest function to add interest to account
             
     def debugAddInterest():
         month = datetime.now().month
@@ -37,7 +42,7 @@ def main():
                     if(account_using_choice == 1):
                         deposit_amount = int(input("Enter deposit amount: "))
                         account.addBalance(deposit_amount)
-                        print(account.balance)
+                        print(f"Done! Your new balance is: {account.balance}")
                         time.sleep(0.5)
                         account.saveAccountState()
                         break
