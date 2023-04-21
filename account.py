@@ -4,7 +4,7 @@
 
 import decimal
 import json
-
+import time
 
 class Account:
 
@@ -47,7 +47,8 @@ class Account:
             "Interest rate:": self.interest
         }
         json_object = json.dumps(dictionary, indent=4)
-        print("Saving account information...") 
+        print("Saving account information...")
+        time.sleep(1) 
         with open('accountInfo.json', "w") as f:
             f.write(json_object)
         print("Done!")
