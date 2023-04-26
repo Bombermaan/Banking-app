@@ -108,26 +108,30 @@ def main():
         if(user_login_choice == 1):
             login_username = input("Enter your username: ")
             login_password = input("Enter password: ")
-            with open('accountInfo.json') as f:
-                data = json.load(f)
+            try:
+                with open('accountInfo.json') as f:
+                    data = json.load(f)
 
-            username = data['Username:']
-            password = data['Password:']
-            account_type = data['Account type:']
-            balance = data['Balance:']
-            if login_username == username and login_password == password:
-                print("Success")
-                class_caller_name = (str(account_type)+"Account")
-                myclass = globals()[class_caller_name]
-                account = myclass(username,password,balance)
-                print(account)
-                time.sleep(1)
-                account.saveAccountState()
-                accountMenu()
-            else:
-                print("Error")
+                username = data['Username:']
+                password = data['Password:']
+                account_type = data['Account type:']
+                balance = data['Balance:']
+                if login_username == username and login_password == password:
+                    print("Success")
+                    class_caller_name = (str(account_type)+"Account")
+                    myclass = globals()[class_caller_name]
+                    account = myclass(username,password,balance)
+                    print(account)
+                    time.sleep(1)
+                    account.saveAccountState()
+                    accountMenu()
+                else:
+                    print("Error")
+                    continue
+
+            except FileNotFoundError:
+                print("Error! Account not found!")
                 continue
-                print("Error, username or password is incorrect.")
             break
         
         #If user chose 2, create account; create a username and password, confirm password.
